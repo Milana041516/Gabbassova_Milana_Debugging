@@ -3,6 +3,7 @@ let theButtons = document.querySelectorAll("#buttonHolder img"),
 	puzzleBoard = document.querySelector(".puzzle-board"),
 	puzzlePieces = document.querySelectorAll(".puzzle-pieces img"),
 	dropZones = document.querySelectorAll('.drop-zone'),
+	restartBtn = document.querySelector('#resetBut'),
 	draggedPiece;
 
 	function changeBGImage() {
@@ -63,3 +64,31 @@ puzzlePieces.forEach(piece => piece.addEventListener("dragstart", handleStartDra
 dropZones.forEach(zone => zone.addEventListener("dragover", handleDragOver));
 
 dropZones.forEach(zone => zone.addEventListener("drop", handleDrop));
+
+restartBtn.addEventListener("click", function() {
+	if (confirm("Do you want to reset the puzzle?")) {
+	  dropZones.forEach(zone => {
+		  while (zone.firstChild) {
+			  zone.removeChild(zone.firstChild);
+		  }
+	  });
+  
+	  puzzlePieces.forEach(piece => piece.classList.remove('hide'));
+	  puzzlePieces.forEach(piece => {
+		piece.style.top = '';
+		piece.style.left = '';
+		piece.style.position = '';
+		piece.style.zIndex = '';
+	  });
+  
+	  puzzleBoard.appendChild(puzzlePieces[0]);
+	  puzzleBoard.appendChild(puzzlePieces[1]);
+	  puzzleBoard.appendChild(puzzlePieces[2]);
+	  puzzleBoard.appendChild(puzzlePieces[3]);
+  
+	  location.reload();
+  
+	} else {
+	  console.log("Reset cancelled.");
+	}
+  });
