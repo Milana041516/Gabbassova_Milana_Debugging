@@ -40,6 +40,7 @@ function handleStartDrag() {
 function handleDragOver(e) { 
 	e.preventDefault(); 
 	console.log('dragged over me'); 
+	this.classList.remove('hide');
 }
 
 function handleDrop(e) { 
