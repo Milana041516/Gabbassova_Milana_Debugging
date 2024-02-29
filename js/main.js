@@ -22,7 +22,14 @@ function handleDragOver(e) {
 function handleDrop(e) { 
 	e.preventDefault();
 	console.log('dropped something on me');
-	this.appendChild(draggedPiece);
+	const initialParent = document.getElementsByClassName('puzzle-pieces')[0];
+
+    if (this.childElementCount === 0) {
+        this.appendChild(draggedPiece);
+    } else {
+        console.log('Oops! There is already one puzzle piece!');
+        initialParent.appendChild(draggedPiece);
+    }
 }
 
 theButtons.forEach(button => button.addEventListener("click", changeBGImage));
