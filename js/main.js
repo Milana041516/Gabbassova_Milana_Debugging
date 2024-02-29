@@ -30,6 +30,9 @@ let theButtons = document.querySelectorAll("#buttonHolder img"),
 
 function handleStartDrag() { 
 	console.log('started dragging this piece:', this);
+	setTimeout(() => {
+		this.classList.add('hide');
+	}, 0 )
 	draggedPiece = this;
 }
 
@@ -49,6 +52,8 @@ function handleDrop(e) {
         console.log('Oops! There is already one puzzle piece!');
         initialParent.appendChild(draggedPiece);
     }
+
+	draggedPiece.classList.remove('hide');
 }
 
 theButtons.forEach(button => button.addEventListener("click", changeBGImage));
